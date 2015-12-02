@@ -36,7 +36,8 @@ class ExtendedActionLinkRouterMixin(object):
                 'get': 'retrieve',
                 'put': 'update',
                 'patch': 'partial_update',
-                'delete': 'destroy'
+                'delete': 'destroy',
+                'post': 'create'
             },
             name='{basename}-detail',
             initkwargs={'suffix': 'Instance'}
