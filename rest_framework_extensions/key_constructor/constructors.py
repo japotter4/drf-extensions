@@ -104,3 +104,19 @@ class DefaultObjectKeyConstructor(DefaultKeyConstructor):
 class DefaultListKeyConstructor(DefaultKeyConstructor):
     list_sql_query = bits.ListSqlQueryKeyBit()
     pagination = bits.PaginationKeyBit()
+
+
+class DefaultAPIModelInstanceKeyConstructor(KeyConstructor):
+    """
+    Use this constructor when the values of the model instance are required
+    to identify the resource.
+    """
+    retrieve_model_values = bits.RetrieveModelKeyBit()
+
+
+class DefaultAPIModelListKeyConstructor(KeyConstructor):
+    """
+    Use this constructor when the values of the model instance are required
+    to identify many resources.
+    """
+    list_model_values = bits.ListModelKeyBit()

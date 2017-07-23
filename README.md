@@ -4,17 +4,15 @@ DRF-extensions is a collection of custom extensions for [Django REST Framework](
 
 Full documentation for project is available at [http://chibisov.github.io/drf-extensions/docs](http://chibisov.github.io/drf-extensions/docs)
 
-[![Build Status](https://travis-ci.org/chibisov/drf-extensions.png?branch=master)](https://travis-ci.org/chibisov/drf-extensions)
-[![Downloads](https://pypip.in/download/drf-extensions/badge.png)](https://pypi.python.org/pypi/drf-extensions/)
-[![Latest Version](https://pypip.in/version/drf-extensions/badge.png)](https://pypi.python.org/pypi/drf-extensions/)
+[![Build Status](https://travis-ci.org/chibisov/drf-extensions.svg?branch=master)](https://travis-ci.org/chibisov/drf-extensions)
+[![PyPI](https://img.shields.io/pypi/v/drf-extensions.svg)](https://pypi.python.org/pypi/drf-extensions)
 
 
 ## Requirements
 
-* Tested for python 2.7 and 3.4 versions
-* Tested for all releases of Django Rest Framework from 2.3.5 to 3.0.4 versions (pypi 0.2.8)
-* Tested for Django from 1.5 to 1.7 versions
-* master branch is supported with django 1.8 and drf 3.3.* with python 3.5
+* Tested for python 2.7 and 3.4, 3.5 versions
+* Tested for releases of Django Rest Framework from 3.1.x to 3.5.3 versions
+* Tested for Django from 1.8 to 1.10 versions
 
 ## Installation:
 

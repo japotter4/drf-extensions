@@ -43,7 +43,7 @@ class ExtendedActionLinkRouterMixin(object):
             initkwargs={'suffix': 'Instance'}
         ),
         # Dynamically generated routes.
-        # Generated using @action or @link decorators on methods of the viewset.
+        # Generated using @list_route or @detail_route decorators on methods of the viewset.
         # List
         Route(
             url=add_trailing_slash_if_needed(r'^{prefix}/{methodname}/$'),
@@ -73,13 +73,13 @@ class ExtendedActionLinkRouterMixin(object):
         Returns a list of the Route namedtuple.
         """
 
-        # Determine any `@action` or `@link` decorated methods on the viewset
+        # Determine any `@list_route` or `@detail_route` decorated methods on the viewset
         dynamic_routes = self.get_dynamic_routes(viewset)
 
         ret = []
         for route in self._routs:
             if self.is_dynamic_route(route):
-                # Dynamic routes (@link or @action decorator)
+                # Dynamic routes (@list_route or @detail_route decorator)
                 if self.is_list_dynamic_route(route):
                     ret += self.get_dynamic_routes_instances(
                         viewset,
@@ -114,7 +114,7 @@ class ExtendedActionLinkRouterMixin(object):
                 endpoint = getattr(attr, 'endpoint', methodname)
                 is_for_list = getattr(attr, 'is_for_list', not getattr(attr, 'detail', True))
                 if endpoint in known_actions:
-                    raise ImproperlyConfigured('Cannot use @action or @link decorator on '
+                    raise ImproperlyConfigured('Cannot use @detail_route or @list_route decorator on '
                                                'method "%s" as %s is an existing route'
                                                % (methodname, endpoint))
                 httpmethods = [method.lower() for method in httpmethods]
@@ -205,11 +205,13 @@ class NestedRouterMixin(object):
             parent_viewset=self.registry[-1][1]
         )
 
-    def get_api_root_view(self):
+    def get_api_root_view(self, **kwargs):
         """
         Return a view to use as the API root.
-        Can be deleted once support of DRF < 2.4.3 is dropped.
+        Important to maintain compat with DRF 3.4.0
         """
+        if StrictVersion(rest_framework.VERSION) >= StrictVersion('3.4.0'):
+            return super(NestedRouterMixin, self).get_api_root_view(**kwargs)
         if StrictVersion(rest_framework.VERSION) >= StrictVersion('2.4.3'):
             return super(NestedRouterMixin, self).get_api_root_view()
         api_root_dict = {}
